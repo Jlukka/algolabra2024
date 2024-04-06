@@ -1,0 +1,7 @@
+- started implementing required features for the program to function
+- still no UI whatsoever (behind in this aspect)
+- still no tests (behind also in this aspect)
+- unhappy with progress i made especially given it was actually two weeks but now I have a clear path on how to continue forwards, lots of time this week were spent researching how RSA actually works and related things such as why probable primes are good enough etc.
+- Learned a whole lot about primes, their characteristics and how they are generated.
+- Curious about if I will have to manually implement some sort of random number generation since it's necessary for the program to function
+- Next steps are: making the modular exponentiation function form scratch and finalizing the prime generation and moving onto creating the actual keys, good time to start making a UI aswell and writing tests.
