@@ -24,8 +24,3 @@ class Sieve():
             if number % prime == 0:
                 return False
         return True
-    
-
-
-a = Sieve(2500)
-print(a.primalityTest(19134702400093278081449423917))

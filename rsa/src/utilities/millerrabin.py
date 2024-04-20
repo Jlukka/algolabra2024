@@ -19,15 +19,17 @@ class MillerRabin():
 
         d, s = self.__findDandS(number)
 
+
         x = power(a,d,number)
-
         for i in range (0, s):
-            
             y = power(x, 2, number)
-
+            
             if y == 1 and x != 1 and x != number-1:
                 return False
+            
             x = y
+        if y != 1:
+            return False
         return True
      
 
