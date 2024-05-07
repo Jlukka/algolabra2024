@@ -1,5 +1,5 @@
 from random import randint
-from modexp import power
+from .modexp import power
 
 class MillerRabin():
     def __init__(self, attempts):

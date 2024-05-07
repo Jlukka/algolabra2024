@@ -1,5 +1,5 @@
-from sieve import Sieve
-from millerrabin import MillerRabin
+from .sieve import Sieve
+from .millerrabin import MillerRabin
 
 from random import randint
 
@@ -12,7 +12,7 @@ class PrimeGenerator:
         isPrime = False
 
         while not isPrime:
-            number = randint(2**(bits-1)+1, 2**bits)
+            number = randint(((2**(bits-1))+(2**(bits-2)+1)), (2**bits) -1)
             if not self.sieve.primalityTest(number):
                 continue
             if not self.millerRabin.primalityTest(number):
