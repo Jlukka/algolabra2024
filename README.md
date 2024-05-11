@@ -10,6 +10,14 @@
 
 
 # Weekly reports
+- [Week 1](https://github.com/Jlukka/algolabra2024/blob/main/documentation/weeklyreports/week1.md)
+
+- [Week 2](https://github.com/Jlukka/algolabra2024/blob/main/documentation/weeklyreports/week2.md)
+
+- [Week 3](https://github.com/Jlukka/algolabra2024/blob/main/documentation/weeklyreports/week3.md)
+
+- [Week 5](https://github.com/Jlukka/algolabra2024/blob/main/documentation/weeklyreports/week5.md)
+
 
 # Usage
 
