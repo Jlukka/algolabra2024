@@ -3,10 +3,10 @@ RSA encryption
 """
 from .primegenerator import PrimeGenerator
 from .lcm import least_common_multiple
-from .gcd import greatestCommonDivisor
+from .gcd import greatest_common_divisor
 from .extended_gcd import multiplicative_inverse
 
-class KeyGenerator:
+class KeyGenerator: # pylint: disable=too-few-public-methods
     """Class that provides functions to generate RSA
     encryption keys
     """
@@ -41,7 +41,7 @@ class KeyGenerator:
             bool: Boolean that states whether lambda n can be used for keymaking
             (the function returns true if lambda n and exponent are not coprime)
         """
-        return greatestCommonDivisor(lambda_n, self.exponent) != 1
+        return greatest_common_divisor(lambda_n, self.exponent) != 1
 
     def __check_if_key_can_be_made(self, p, q):
         """Function that performs necessary checks to ensure the keys
@@ -99,6 +99,6 @@ class KeyGenerator:
         Returns:
             int: Tuple where contents are (first prime, second prime)
         """
-        first_prime = self.prime_generator.generatePrime(self.bits)
-        second_prime = self.prime_generator.generatePrime(self.bits)
+        first_prime = self.prime_generator.generate_prime(self.bits)
+        second_prime = self.prime_generator.generate_prime(self.bits)
         return (first_prime, second_prime)

@@ -1,17 +1,19 @@
+"""Module that provides a class to generate primes with
+"""
+from random import randint
+
 from .sieve import Sieve
 from .millerrabin import MillerRabin
 
-from random import randint
-
-class PrimeGenerator:
+class PrimeGenerator: # pylint: disable=too-few-public-methods
     """Class that provides a function used to generate probable primes with."""
 
     def __init__(self):
         """Class constructor that creates a new instance of the PrimeGenerator"""
         self.sieve = Sieve(2500)
-        self.millerRabin = MillerRabin(40)
+        self.miller_rabin = MillerRabin(40)
 
-    def generatePrime(self, bits):
+    def generate_prime(self, bits):
         """Function that generates probable primes when called of wanted bit length
 
         Args:
@@ -21,29 +23,27 @@ class PrimeGenerator:
             int: Probable prime number of wanted bit length
         """
         while True:
-            candidate = self.__generatePrimeCandidate(bits)
-            if self.__testPrimeCandidate(candidate):
+            candidate = self.__generate_prime_candidate(bits)
+            if self.__test_prime_candidate(candidate):
                 return candidate
-            else:
-                continue
 
-    def __testPrimeCandidate(self, primeCandidate):
+    def __test_prime_candidate(self, prime_candidate):
         """Private class that tests probable prime number candidates against Sieve of Eratosthenes
         and the Miller-Rabin primality test.
 
         Args:
-            primeCandidate (int): Integer value being tested by the primality tests
+            prime_candidate (int): Integer value being tested by the primality tests
 
         Returns:
             bool: Boolean that tells whether the candidate is a probable prime or not
         """
-        if not self.sieve.primality_test(primeCandidate):
+        if not self.sieve.primality_test(prime_candidate):
             return False
-        if not self.millerRabin.primalityTest(primeCandidate):
+        if not self.miller_rabin.primality_test(prime_candidate):
             return False
         return True
 
-    def __generatePrimeCandidate(self, bits):
+    def __generate_prime_candidate(self, bits):
         """Function that generates random integers of wanted bit length
 
         Args:

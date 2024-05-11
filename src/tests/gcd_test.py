@@ -1,6 +1,6 @@
 import unittest
 
-from utilities.gcd import greatestCommonDivisor
+from utilities.gcd import greatest_common_divisor
 
 
 class TestGCD(unittest.TestCase):
@@ -20,17 +20,17 @@ class TestGCD(unittest.TestCase):
         self.big_divisor = 23324234546645645645645645645561892731982738912371029386712903122228190230512981024039128937198237198237128937189237918237129838232348972398894732343972324234947289894723984723984728931927398127434231897439583749583479127389127398129853894309834950834578240128931029784125487127341290381209324850934890239812
 
     def test_small_number_factor_being_one(self):
-        self.assertEqual(greatestCommonDivisor(
+        self.assertEqual(greatest_common_divisor(
             self.small_number, self.small_divisor), 1)
 
     def test_small_number_factor_being_not_one(self):
-        self.assertEqual(greatestCommonDivisor(
+        self.assertEqual(greatest_common_divisor(
             self.small_number_2, self.small_divisor_2), 3)
 
     def test_big_number_facotr_being_one(self):
-        self.assertEqual(greatestCommonDivisor(
+        self.assertEqual(greatest_common_divisor(
             self.big_number, self.big_divisor), 1)
 
     def test_big_number_factor_being_not_one(self):
-        self.assertEqual(greatestCommonDivisor(
+        self.assertEqual(greatest_common_divisor(
             self.big_number_2, self.big_divisor), 2)
