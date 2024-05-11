@@ -59,3 +59,4 @@ To generate a pylint report on the code run following command
 To automatically format the code with autopep8 run the following command
 
 > poetry run invoke format
+
