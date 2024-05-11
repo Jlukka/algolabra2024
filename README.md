@@ -1,12 +1,12 @@
 # algolabra2024
 # Documentation
-[Project specification](https://github.com/Jlukka/algolabra2024/blob/main/documentation/specification.md)
+- [Project specification](https://github.com/Jlukka/algolabra2024/blob/main/documentation/specification.md)
 
-[Implementation](https://github.com/Jlukka/algolabra2024/blob/main/documentation/implementation.md)
+- [Implementation](https://github.com/Jlukka/algolabra2024/blob/main/documentation/implementation.md)
 
-[Testing](https://github.com/Jlukka/algolabra2024/blob/main/documentation/testing.md)
+- [Testing](https://github.com/Jlukka/algolabra2024/blob/main/documentation/testing.md)
 
-[User instructions](https://github.com/Jlukka/algolabra2024/blob/main/documentation/instructions.md)
+- [User instructions](https://github.com/Jlukka/algolabra2024/blob/main/documentation/instructions.md)
 
 
 # Weekly reports
