@@ -1,4 +1,6 @@
 # algolabra2024
+https://github.com/jlukka/algolabra2024/workflows/CI/badge.svg
+
 
 # Documentation
 - [Project specification](https://github.com/Jlukka/algolabra2024/blob/main/documentation/specification.md)
