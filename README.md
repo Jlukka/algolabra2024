@@ -1,5 +1,5 @@
 # algolabra2024
-https://github.com/jlukka/algolabra2024/workflows/CI/badge.svg
+[badge](https://github.com/jlukka/algolabra2024/workflows/CI/badge.svg)
 
 
 # Documentation
