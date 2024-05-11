@@ -1,6 +1,6 @@
 # algolabra2024
 ![badge](https://github.com/jlukka/algolabra2024/workflows/CI/badge.svg)
-
+[![codecov](https://codecov.io/gh/Jlukka/algolabra2024/graph/badge.svg?token=CRYNQK5Y28)](https://codecov.io/gh/Jlukka/algolabra2024)
 
 # Documentation
 - [Project specification](https://github.com/Jlukka/algolabra2024/blob/main/documentation/specification.md)
