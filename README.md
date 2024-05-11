@@ -1,4 +1,5 @@
 # algolabra2024
+
 # Documentation
 - [Project specification](https://github.com/Jlukka/algolabra2024/blob/main/documentation/specification.md)
 
