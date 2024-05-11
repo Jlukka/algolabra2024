@@ -15,7 +15,14 @@ pylint = "^3.1.0"
 pylint = "^3.1.0"
 pytest = "^8.1.1"
 coverage = "^7.4.4"
+autopep8 = "^2.1.0"
+nprime = "^1.2.1"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.autopep8]
+in-place = true
+aggressive = 2
+max-line-length = 79

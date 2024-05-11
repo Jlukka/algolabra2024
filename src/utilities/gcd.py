@@ -1,4 +1,4 @@
-def greatestCommonDivisor(a,b):
+def greatestCommonDivisor(a, b):
     while b != 0:
-        b,a = a % b, b
+        b, a = a % b, b
     return a

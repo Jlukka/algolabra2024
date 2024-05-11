@@ -1,68 +1,104 @@
+"""Module that provides a class that generates keys for
+RSA encryption
+"""
 from .primegenerator import PrimeGenerator
-from .lcm import leastCommonMultiple
+from .lcm import least_common_multiple
 from .gcd import greatestCommonDivisor
 from .extended_gcd import multiplicative_inverse
-from .modexp import power
 
-from pathlib import Path
+class KeyGenerator:
+    """Class that provides functions to generate RSA
+    encryption keys
+    """
+    def __init__(self):
+        """Class constructor that creates a new instance of KeyGenerator
+        """
+        self.bits = 1024
+        self.prime_generator = PrimeGenerator()
+        self.exponent = 65537
 
-a = PrimeGenerator()
-bits = 1024
+    def __check_too_close(self, p, q):
+        """Checks if the two primes are too close to one another
+        for security purposes
 
-p = a.generatePrime(bits)
-q = a.generatePrime(bits)
-n = p*q
-tooClose = (abs(p-q)<= 2**((bits//2)-100))
-lambdaN = leastCommonMultiple(p-1,q-1)
+        Args:
+            p (int): First prime
+            q (int): Second prime
 
+        Returns:
+            bool: Boolean that states whether the primes are too close
+            to one another to be usable for key making
+        """
+        return abs(p - q) <= 2**((self.bits // 2) - 100)
 
+    def __check_lambda_n(self, lambda_n):
+        """Function that checks if the exponent and lambda n are coprime
 
-def generateKeys(bits, name):
-    a = PrimeGenerator()
+        Args:
+            lambda_n (int): Totient of p and q
 
-    exponent = 65537
+        Returns:
+            bool: Boolean that states whether lambda n can be used for keymaking
+            (the function returns true if lambda n and exponent are not coprime)
+        """
+        return greatestCommonDivisor(lambda_n, self.exponent) != 1
 
-    finished = False
-    while not finished:
-        p = a.generatePrime(bits)
-        q = a.generatePrime(bits)
+    def __check_if_key_can_be_made(self, p, q):
+        """Function that performs necessary checks to ensure the keys
+        can be created without issues
 
-        if (abs(p-q)<= 2**((bits//2)-100)):
-            continue
+        Args:
+            p (int): First prime
+            q (int): Second prime
 
-        lambdaN = leastCommonMultiple(p-1,q-1)
-        if greatestCommonDivisor(lambdaN, exponent) != 1:
-            continue
+        Returns:
+            bool: Boolean that states whether the keys can be created 
+            from p and q
+        """
+        if self.__check_too_close(p, q):
+            return (False, None)
 
-        n = p*q
+        lambda_n = least_common_multiple(p - 1, q - 1)
 
-        d = multiplicative_inverse(exponent, lambdaN)
+        if self.__check_lambda_n(lambda_n):
+            return (False, None)
 
-        folder = Path("./keys").mkdir(exist_ok=True) or Path("./keys")
+        try:
+            d = multiplicative_inverse(self.exponent, lambda_n)
+        except ValueError:
+            return (False, None)
 
-        pub_key = str(bin(n)[2:])+str(bin(exponent)[2:])
+        return (True, d)
 
-        priv_key = str(bin(n)[2:])+str(bin(d)[2:])
+    def generate_keys(self):
+        """Function that runs until two valid primes are found
+        and public and private encryption keys are created from
+        the prime numbers
 
-        pub_key_file = folder.joinpath(name + "_pub.txt")
+        Returns:
+            tuple: Tuple where the contents are (public key, private key)
+        """
+        while True:
+            p, q = self.__generate_two_primes()
 
-        priv_key_file = folder.joinpath(name + "_priv.txt")
+            n = p * q
 
-        pub_key_file.write_text(pub_key)
+            success, d = self.__check_if_key_can_be_made(p, q)
 
-        priv_key_file.write_text(priv_key)
+            if success:
+                pub_key = str(bin(n)[2:]) + str(bin(self.exponent)[2:])
 
-        finished = True
+                priv_key = str(bin(n)[2:]) + str(bin(d)[2:])
 
-"""
-        message = 19215303908453569823336757320931988257576159024438864032515723337657564869766754517224764645710830934557031676482438517004038561240340994336375309339180586249519911472398339791774312571680940680967659620614658306044009087750665828756328188910569534857453672811698669202405160539829074817814422384317244826589463150191151153397031848302579849657296483674856994783238797091824941371719456490421995007067863058656145609644950696231904617923919232189824477996008863296782030536688129339133750960391123559245690178118087707259619112222333887430269039755585740050266758895780336034799585843815131368293166113613778946347939
-        print(f"message {message}")
-        encrypted_message = power(message, exponent, n)
-        print(f"encrypted message {encrypted_message}")
-        decrypted_message = power(encrypted_message, d, n)
-        print(f"decrypted_message {decrypted_message}")
-        print(message == decrypted_message)
-"""
+                return (pub_key, priv_key)
 
-if __name__ == "__main__":
-    generateKeys(1024, "test")
+    def __generate_two_primes(self):
+        """Auxiliary function that generates two probable prime
+        numbers for the key generation function
+
+        Returns:
+            int: Tuple where contents are (first prime, second prime)
+        """
+        first_prime = self.prime_generator.generatePrime(self.bits)
+        second_prime = self.prime_generator.generatePrime(self.bits)
+        return (first_prime, second_prime)

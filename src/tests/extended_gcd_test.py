@@ -1,0 +1,55 @@
+import unittest
+
+from utilities.extended_gcd import multiplicative_inverse
+
+
+class TestExtendedGCD(unittest.TestCase):
+    def setUp(self):
+        self.small_number = 289
+
+        self.small_divisor = 71
+
+        self.small_invalid_number = 246
+
+        self.small_invalid_divisor = 123
+
+        self.medium_number = 234235623623623
+
+        self.medium_divisor = 678867
+
+        self.medium_invalid_number = 16823688264
+
+        self.medium_invalid_divisor = 2102961033
+
+        self.big_number = 1111111111111111111111111111119472389472389812209381902549018238910248121298371859122609131298371829398712981725981274982474623455287328934782374293847892343223423423423908899878000000012391203462352376656782365782346283746238746238761267516275126514526115624516256127616786871263781264387182764128764904819204
+
+        self.big_divisor = 2378492839472983472389472389472389812209381902549018238910248121298371859122609131298371829398712981725981274982474623455287328934782374293847892343223423423423908899878000000012391203462352376656782365782346283746238746238761267516275126514526115624516256127616786871263781264387182764128764904819209
+
+        self.big_invalid_divisor = 2378492839472983472389472389472389812209381902549018238910248121298371859122609131298371829398712981725981274982474623455287328934782374293847892343223423423423908899878000000012391203462352376656782365782346283746238746238761267516275126514526115624516256127616786871263781264387182764128764904819204
+
+    def test_small_number_returns_correct_value(self):
+        self.assertEqual(multiplicative_inverse(
+            self.small_number, self.small_divisor), 57)
+
+    def test_small_invalid_number_returns_none(self):
+        self.assertIsNone(multiplicative_inverse(
+            self.small_invalid_number, self.small_invalid_divisor))
+
+    def test_medium_number_returns_correct_value(self):
+        self.assertEqual(multiplicative_inverse(
+            self.medium_number, self.medium_divisor), 106084)
+
+    def test_medium_invalid_number_returns_none(self):
+        self.assertIsNone(multiplicative_inverse(
+            self.medium_invalid_number, self.medium_invalid_divisor))
+
+    def test_big_number_returns_none(self):
+        self.assertEqual(
+            multiplicative_inverse(
+                self.big_number,
+                self.big_divisor),
+            1569226103187225082565923380390492937385149719276037078362366525341294198354187455499273268530718574306938768840351192416041104061792547256708181137614737249630292812431408770386486330464114624526174689903292123317686627075626569519671766767144712420092814686942778846954673937603343437269259187090536)
+
+    def test_big_invalid_number_returns_none(self):
+        self.assertIsNone(multiplicative_inverse(
+            self.big_number, self.big_invalid_divisor))

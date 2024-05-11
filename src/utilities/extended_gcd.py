@@ -1,5 +1,18 @@
-def multiplicative_inverse(a,b):
-    old_t, new_t = 0,1
+"""Module that provides extended euclidean algorithm to calculate
+modular multiplicative inverses of two numbers
+"""
+def multiplicative_inverse(a, b):
+    """Function that calculates the modular multiplicative inverse
+    of two numbers
+
+    Args:
+        a (int): First number
+        b (int): Second number
+
+    Returns:
+        int: Modular multiplicative inverse of a and b
+    """
+    old_t, new_t = 0, 1
     old_r, new_r = b, a
 
     while new_r != 0:
@@ -12,8 +25,3 @@ def multiplicative_inverse(a,b):
     if old_t < 0:
         return old_t + b
     return old_t
-
-
-
-if __name__=="__main__":
-    print(multiplicative_inverse(2737,225720))
